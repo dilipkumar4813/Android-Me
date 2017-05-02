@@ -1,6 +1,10 @@
 # Android-Me
 An application that shows a list of images which can used to customise hair and clothing by implementing fragments using master detail flow
 
+## Installation
+* Clone the repository
+* Build the project and run
+* No additional work required :smiley
 
 ## Screenshots
 
@@ -14,3 +18,6 @@ An application that shows a list of images which can used to customise hair and 
 
 ### Tablet Landscape
 ![Tablet landscape](https://github.com/dilipkumar4813/Android-Me/blob/master/screenshots/tablet-device-2017-05-02-205042.png)
+
+## License
+License for this project can be found in [Link](https://github.com/dilipkumar4813/Android-Me/blob/master/License)
