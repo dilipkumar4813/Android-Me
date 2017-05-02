@@ -49,6 +49,8 @@ public class MasterListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_master_list, container, false);
 
         GridView imagesGrid = (GridView) view.findViewById(R.id.images_gridview);
+
+
         MasterListAdapter adapter = new MasterListAdapter(getContext(), AndroidImageAssets.getAll());
         imagesGrid.setAdapter(adapter);
 

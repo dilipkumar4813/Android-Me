@@ -2,11 +2,13 @@ package com.example.android.android_me.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.android.android_me.R;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
     Button btnNext;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -42,34 +44,38 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
             mTwoPane = true;
             btnNext.setVisibility(View.GONE);
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            GridView imagesGrid = (GridView) findViewById(R.id.images_gridview);
+            imagesGrid.setNumColumns(2);
 
-            BodyPartFragment headPartFragment = new BodyPartFragment();
-            headPartFragment.setImageIds(AndroidImageAssets.getHeads());
-            headPartFragment.setListIndex(headIndex);
-            fragmentManager.beginTransaction()
-                    .add(R.id.head_container, headPartFragment)
-                    .commit();
+            if (savedInstanceState == null) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
 
-            BodyPartFragment bodyPartFragment = new BodyPartFragment();
-            bodyPartFragment.setImageIds(AndroidImageAssets.getBodies());
-            bodyPartFragment.setListIndex(bodyIndex);
-            fragmentManager.beginTransaction()
-                    .add(R.id.body_container, bodyPartFragment)
-                    .commit();
+                BodyPartFragment headPartFragment = new BodyPartFragment();
+                headPartFragment.setImageIds(AndroidImageAssets.getHeads());
+                headPartFragment.setListIndex(headIndex);
+                fragmentManager.beginTransaction()
+                        .add(R.id.head_container, headPartFragment)
+                        .commit();
 
-            BodyPartFragment legsPartFragment = new BodyPartFragment();
-            legsPartFragment.setImageIds(AndroidImageAssets.getLegs());
-            legsPartFragment.setListIndex(legsIndex);
-            fragmentManager.beginTransaction()
-                    .add(R.id.feet_container, legsPartFragment)
-                    .commit();
+                BodyPartFragment bodyPartFragment = new BodyPartFragment();
+                bodyPartFragment.setImageIds(AndroidImageAssets.getBodies());
+                bodyPartFragment.setListIndex(bodyIndex);
+                fragmentManager.beginTransaction()
+                        .add(R.id.body_container, bodyPartFragment)
+                        .commit();
+
+                BodyPartFragment legsPartFragment = new BodyPartFragment();
+                legsPartFragment.setImageIds(AndroidImageAssets.getLegs());
+                legsPartFragment.setListIndex(legsIndex);
+                fragmentManager.beginTransaction()
+                        .add(R.id.feet_container, legsPartFragment)
+                        .commit();
+            }
         }
     }
 
     @Override
     public void onImageSelected(int position) {
-        Toast.makeText(this, "Image position" + position, Toast.LENGTH_SHORT).show();
         int bodyPartNumber = position / 12;
         int listIndex = position - 12 * bodyPartNumber;
 
@@ -86,14 +92,14 @@ public class MainActivity extends AppCompatActivity implements MasterListFragmen
                             .commit();
                     break;
                 case 1:
-                    newPartFragment.setImageIds(AndroidImageAssets.getHeads());
+                    newPartFragment.setImageIds(AndroidImageAssets.getBodies());
                     newPartFragment.setListIndex(listIndex);
                     fragmentManager.beginTransaction()
                             .replace(R.id.body_container, newPartFragment)
                             .commit();
                     break;
                 case 2:
-                    newPartFragment.setImageIds(AndroidImageAssets.getHeads());
+                    newPartFragment.setImageIds(AndroidImageAssets.getLegs());
                     newPartFragment.setListIndex(listIndex);
                     fragmentManager.beginTransaction()
                             .replace(R.id.feet_container, newPartFragment)

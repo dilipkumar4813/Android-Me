@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="horizontal">
 
     <fragment
@@ -10,33 +11,34 @@
         android:layout_width="300dp"
         android:layout_height="match_parent" />
 
-    <LinearLayout
-        android:id="@+id/ll_display_droid"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="3">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/head_container"
+        <LinearLayout
+            android:id="@+id/ll_display_droid"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scaleType="centerInside" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/body_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scaleType="centerInside" />
+            <FrameLayout
+                android:id="@+id/head_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside" />
 
-        <FrameLayout
-            android:id="@+id/feet_container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scaleType="centerInside" />
-    </LinearLayout>
+            <FrameLayout
+                android:id="@+id/body_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside" />
+
+            <FrameLayout
+                android:id="@+id/feet_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
